@@ -5,10 +5,10 @@ import (
 	"testing"
 	"time"
 
-	peer "github.com/libp2p/go-libp2p-peer"
-	pstore "github.com/libp2p/go-libp2p-peerstore"
-	swarmt "github.com/libp2p/go-libp2p-swarm/testing"
-	bhost "github.com/libp2p/go-libp2p/p2p/host/basic"
+	peer "github.com/dms3-p2p/go-p2p-peer"
+	pstore "github.com/dms3-p2p/go-p2p-peerstore"
+	swarmt "github.com/dms3-p2p/go-p2p-swarm/testing"
+	bhost "github.com/dms3-p2p/go-p2p/p2p/host/basic"
 )
 
 func TestPing(t *testing.T) {

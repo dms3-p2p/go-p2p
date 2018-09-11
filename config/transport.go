@@ -1,12 +1,12 @@
 package config
 
 import (
-	host "github.com/libp2p/go-libp2p-host"
-	transport "github.com/libp2p/go-libp2p-transport"
-	tptu "github.com/libp2p/go-libp2p-transport-upgrader"
+	host "github.com/dms3-p2p/go-p2p-host"
+	transport "github.com/dms3-p2p/go-p2p-transport"
+	tptu "github.com/dms3-p2p/go-p2p-transport-upgrader"
 )
 
-// TptC is the type for libp2p transport constructors. You probably won't ever
+// TptC is the type for dms3-p2p transport constructors. You probably won't ever
 // implement this function interface directly. Instead, pass your transport
 // constructor to TransportConstructor.
 type TptC func(h host.Host, u *tptu.Upgrader) (transport.Transport, error)

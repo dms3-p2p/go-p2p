@@ -1,4 +1,4 @@
-package libp2p
+package p2p
 
 import (
 	"context"
@@ -7,10 +7,10 @@ import (
 	"strings"
 	"testing"
 
-	crypto "github.com/libp2p/go-libp2p-crypto"
-	host "github.com/libp2p/go-libp2p-host"
-	pstore "github.com/libp2p/go-libp2p-peerstore"
-	"github.com/libp2p/go-tcp-transport"
+	crypto "github.com/dms3-p2p/go-p2p-crypto"
+	host "github.com/dms3-p2p/go-p2p-host"
+	pstore "github.com/dms3-p2p/go-p2p-peerstore"
+	"github.com/dms3-p2p/go-tcp-transport"
 )
 
 func TestNewHost(t *testing.T) {
@@ -28,7 +28,7 @@ func TestBadTransportConstructor(t *testing.T) {
 		h.Close()
 		t.Fatal("expected an error")
 	}
-	if !strings.Contains(err.Error(), "libp2p_test.go") {
+	if !strings.Contains(err.Error(), "p2p_test.go") {
 		t.Error("expected error to contain debugging info")
 	}
 }

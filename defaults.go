@@ -1,18 +1,18 @@
-package libp2p
+package p2p
 
 // This file contains all the default configuration options.
 
 import (
 	"crypto/rand"
 
-	crypto "github.com/libp2p/go-libp2p-crypto"
-	pstore "github.com/libp2p/go-libp2p-peerstore"
-	secio "github.com/libp2p/go-libp2p-secio"
-	tcp "github.com/libp2p/go-tcp-transport"
-	ws "github.com/libp2p/go-ws-transport"
-	multiaddr "github.com/multiformats/go-multiaddr"
-	mplex "github.com/whyrusleeping/go-smux-multiplex"
-	yamux "github.com/whyrusleeping/go-smux-yamux"
+	crypto "github.com/dms3-p2p/go-p2p-crypto"
+	pstore "github.com/dms3-p2p/go-p2p-peerstore"
+	secio "github.com/dms3-p2p/go-p2p-secio"
+	tcp "github.com/dms3-p2p/go-tcp-transport"
+	ws "github.com/dms3-p2p/go-ws-transport"
+	multiaddr "github.com/dms3-mft/go-multiaddr"
+	mplex "github.com/dms3-why/go-smux-multiplex"
+	yamux "github.com/dms3-why/go-smux-yamux"
 )
 
 // DefaultSecurity is the default security option.
@@ -21,25 +21,25 @@ import (
 // security protocols.
 var DefaultSecurity = Security(secio.ID, secio.New)
 
-// DefaultMuxers configures libp2p to use the stream connection multiplexers.
+// DefaultMuxers configures dms3-p2p to use the stream connection multiplexers.
 //
 // Use this option when you want to *extend* the set of multiplexers used by
-// libp2p instead of replacing them.
+// dms3-p2p instead of replacing them.
 var DefaultMuxers = ChainOptions(
 	Muxer("/yamux/1.0.0", yamux.DefaultTransport),
 	Muxer("/mplex/6.7.0", mplex.DefaultTransport),
 )
 
-// DefaultTransports are the default libp2p transports.
+// DefaultTransports are the default dms3-p2p transports.
 //
 // Use this option when you want to *extend* the set of multiplexers used by
-// libp2p instead of replacing them.
+// dms3-p2p instead of replacing them.
 var DefaultTransports = ChainOptions(
 	Transport(tcp.NewTCPTransport),
 	Transport(ws.New),
 )
 
-// DefaultPeerstore configures libp2p to use the default peerstore.
+// DefaultPeerstore configures dms3-p2p to use the default peerstore.
 var DefaultPeerstore Option = func(cfg *Config) error {
 	return cfg.Apply(Peerstore(pstore.NewPeerstore()))
 }
@@ -53,7 +53,7 @@ var RandomIdentity = func(cfg *Config) error {
 	return cfg.Apply(Identity(priv))
 }
 
-// DefaultListenAddrs configures libp2p to use default listen address
+// DefaultListenAddrs configures dms3-p2p to use default listen address
 var DefaultListenAddrs = func(cfg *Config) error {
 	defaultIP4ListenAddr, err := multiaddr.NewMultiaddr("/ip4/0.0.0.0/tcp/0")
 	if err != nil {
@@ -104,7 +104,7 @@ var defaults = []struct {
 	},
 }
 
-// Defaults configures libp2p to use the default options. Can be combined with
+// Defaults configures dms3-p2p to use the default options. Can be combined with
 // other options to *extend* the default options.
 var Defaults Option = func(cfg *Config) error {
 	for _, def := range defaults {
@@ -115,7 +115,7 @@ var Defaults Option = func(cfg *Config) error {
 	return nil
 }
 
-// FallbackDefaults applies default options to the libp2p node if and only if no
+// FallbackDefaults applies default options to the dms3-p2p node if and only if no
 // other relevent options have been applied. will be appended to the options
 // passed into New.
 var FallbackDefaults Option = func(cfg *Config) error {

@@ -7,18 +7,18 @@ import (
 	"io"
 	"time"
 
-	u "github.com/ipfs/go-ipfs-util"
-	logging "github.com/ipfs/go-log"
-	host "github.com/libp2p/go-libp2p-host"
-	inet "github.com/libp2p/go-libp2p-net"
-	peer "github.com/libp2p/go-libp2p-peer"
+	u "github.com/dms3-fs/go-fs-util"
+	logging "github.com/dms3-fs/go-log"
+	host "github.com/dms3-p2p/go-p2p-host"
+	inet "github.com/dms3-p2p/go-p2p-net"
+	peer "github.com/dms3-p2p/go-p2p-peer"
 )
 
 var log = logging.Logger("ping")
 
 const PingSize = 32
 
-const ID = "/ipfs/ping/1.0.0"
+const ID = "/dms3fs/ping/1.0.0"
 
 const pingTimeout = time.Second * 60
 

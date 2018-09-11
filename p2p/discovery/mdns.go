@@ -10,18 +10,18 @@ import (
 	"sync"
 	"time"
 
-	logging "github.com/ipfs/go-log"
-	"github.com/libp2p/go-libp2p-host"
-	"github.com/libp2p/go-libp2p-peer"
-	pstore "github.com/libp2p/go-libp2p-peerstore"
-	ma "github.com/multiformats/go-multiaddr"
-	manet "github.com/multiformats/go-multiaddr-net"
+	logging "github.com/dms3-fs/go-log"
+	"github.com/dms3-p2p/go-p2p-host"
+	"github.com/dms3-p2p/go-p2p-peer"
+	pstore "github.com/dms3-p2p/go-p2p-peerstore"
+	ma "github.com/dms3-mft/go-multiaddr"
+	manet "github.com/dms3-mft/go-multiaddr-net"
 	"github.com/whyrusleeping/mdns"
 )
 
 var log = logging.Logger("mdns")
 
-const ServiceTag = "_ipfs-discovery._udp"
+const ServiceTag = "_dms3fs-discovery._udp"
 
 type Service interface {
 	io.Closer

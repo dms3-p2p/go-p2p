@@ -3,11 +3,11 @@ package config
 import (
 	"fmt"
 
-	security "github.com/libp2p/go-conn-security"
-	csms "github.com/libp2p/go-conn-security-multistream"
-	insecure "github.com/libp2p/go-conn-security/insecure"
-	host "github.com/libp2p/go-libp2p-host"
-	peer "github.com/libp2p/go-libp2p-peer"
+	security "github.com/dms3-p2p/go-conn-security"
+	csms "github.com/dms3-p2p/go-conn-security-multistream"
+	insecure "github.com/dms3-p2p/go-conn-security/insecure"
+	host "github.com/dms3-p2p/go-p2p-host"
+	peer "github.com/dms3-p2p/go-p2p-peer"
 )
 
 // SecC is a security transport constructor
@@ -69,7 +69,7 @@ func makeSecurityTransport(h host.Host, tpts []MsSecC) (security.Transport, erro
 			return nil, err
 		}
 		if _, ok := tpt.(*insecure.Transport); ok {
-			return nil, fmt.Errorf("cannot construct libp2p with an insecure transport, set the Insecure config option instead")
+			return nil, fmt.Errorf("cannot construct dms3-p2p with an insecure transport, set the Insecure config option instead")
 		}
 		secMuxer.AddTransport(tptC.ID, tpt)
 	}

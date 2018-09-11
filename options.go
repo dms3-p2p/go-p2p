@@ -1,26 +1,26 @@
-package libp2p
+package p2p
 
-// This file contains all libp2p configuration options (except the defaults,
+// This file contains all dms3-p2p configuration options (except the defaults,
 // those are in defaults.go)
 
 import (
 	"fmt"
 	"net"
 
-	config "github.com/libp2p/go-libp2p/config"
-	bhost "github.com/libp2p/go-libp2p/p2p/host/basic"
+	config "github.com/dms3-p2p/go-p2p/config"
+	bhost "github.com/dms3-p2p/go-p2p/p2p/host/basic"
 
-	circuit "github.com/libp2p/go-libp2p-circuit"
-	crypto "github.com/libp2p/go-libp2p-crypto"
-	ifconnmgr "github.com/libp2p/go-libp2p-interface-connmgr"
-	pnet "github.com/libp2p/go-libp2p-interface-pnet"
-	metrics "github.com/libp2p/go-libp2p-metrics"
-	pstore "github.com/libp2p/go-libp2p-peerstore"
-	filter "github.com/libp2p/go-maddr-filter"
-	ma "github.com/multiformats/go-multiaddr"
+	circuit "github.com/dms3-p2p/go-p2p-circuit"
+	crypto "github.com/dms3-p2p/go-p2p-crypto"
+	ifconnmgr "github.com/dms3-p2p/go-p2p-interface-connmgr"
+	pnet "github.com/dms3-p2p/go-p2p-interface-pnet"
+	metrics "github.com/dms3-p2p/go-p2p-metrics"
+	pstore "github.com/dms3-p2p/go-p2p-peerstore"
+	filter "github.com/dms3-p2p/go-maddr-filter"
+	ma "github.com/dms3-mft/go-multiaddr"
 )
 
-// ListenAddrStrings configures libp2p to listen on the given (unparsed)
+// ListenAddrStrings configures dms3-p2p to listen on the given (unparsed)
 // addresses.
 func ListenAddrStrings(s ...string) Option {
 	return func(cfg *Config) error {
@@ -35,7 +35,7 @@ func ListenAddrStrings(s ...string) Option {
 	}
 }
 
-// ListenAddrs configures libp2p to listen on the given addresses.
+// ListenAddrs configures dms3-p2p to listen on the given addresses.
 func ListenAddrs(addrs ...ma.Multiaddr) Option {
 	return func(cfg *Config) error {
 		cfg.ListenAddrs = append(cfg.ListenAddrs, addrs...)
@@ -43,13 +43,13 @@ func ListenAddrs(addrs ...ma.Multiaddr) Option {
 	}
 }
 
-// Security configures libp2p to use the given security transport (or transport
+// Security configures dms3-p2p to use the given security transport (or transport
 // constructor).
 //
 // Name is the protocol name.
 //
 // The transport can be a constructed security.Transport or a function taking
-// any subset of this libp2p node's:
+// any subset of this dms3-p2p node's:
 // * Public key
 // * Private key
 // * Peer ID
@@ -64,7 +64,7 @@ func Security(name string, tpt interface{}) Option {
 			return err
 		}
 		if cfg.Insecure {
-			return fmt.Errorf("cannot use security transports with an insecure libp2p configuration")
+			return fmt.Errorf("cannot use security transports with an insecure dms3-p2p configuration")
 		}
 		cfg.SecurityTransports = append(cfg.SecurityTransports, config.MsSecC{SecC: stpt, ID: name})
 		return nil
@@ -75,19 +75,19 @@ func Security(name string, tpt interface{}) Option {
 // It's incompatible with all other transport security protocols.
 var NoSecurity Option = func(cfg *Config) error {
 	if len(cfg.SecurityTransports) > 0 {
-		return fmt.Errorf("cannot use security transports with an insecure libp2p configuration")
+		return fmt.Errorf("cannot use security transports with an insecure dms3-p2p configuration")
 	}
 	cfg.Insecure = true
 	return nil
 }
 
-// Muxer configures libp2p to use the given stream multiplexer (or stream
+// Muxer configures dms3-p2p to use the given stream multiplexer (or stream
 // multiplexer constructor).
 //
 // Name is the protocol name.
 //
 // The transport can be a constructed mux.Transport or a function taking any
-// subset of this libp2p node's:
+// subset of this dms3-p2p node's:
 // * Peer ID
 // * Host
 // * Network
@@ -104,11 +104,11 @@ func Muxer(name string, tpt interface{}) Option {
 	}
 }
 
-// Transport configures libp2p to use the given transport (or transport
+// Transport configures dms3-p2p to use the given transport (or transport
 // constructor).
 //
 // The transport can be a constructed transport.Transport or a function taking
-// any subset of this libp2p node's:
+// any subset of this dms3-p2p node's:
 // * Transport Upgrader (*tptu.Upgrader)
 // * Host
 // * Stream muxer (muxer.Transport)
@@ -131,7 +131,7 @@ func Transport(tpt interface{}) Option {
 	}
 }
 
-// Peerstore configures libp2p to use the given peerstore.
+// Peerstore configures dms3-p2p to use the given peerstore.
 func Peerstore(ps pstore.Peerstore) Option {
 	return func(cfg *Config) error {
 		if cfg.Peerstore != nil {
@@ -143,7 +143,7 @@ func Peerstore(ps pstore.Peerstore) Option {
 	}
 }
 
-// PrivateNetwork configures libp2p to use the given private network protector.
+// PrivateNetwork configures dms3-p2p to use the given private network protector.
 func PrivateNetwork(prot pnet.Protector) Option {
 	return func(cfg *Config) error {
 		if cfg.Protector != nil {
@@ -155,7 +155,7 @@ func PrivateNetwork(prot pnet.Protector) Option {
 	}
 }
 
-// BandwidthReporter configures libp2p to use the given bandwidth reporter.
+// BandwidthReporter configures dms3-p2p to use the given bandwidth reporter.
 func BandwidthReporter(rep metrics.Reporter) Option {
 	return func(cfg *Config) error {
 		if cfg.Reporter != nil {
@@ -167,7 +167,7 @@ func BandwidthReporter(rep metrics.Reporter) Option {
 	}
 }
 
-// Identity configures libp2p to use the given private key to identify itself.
+// Identity configures dms3-p2p to use the given private key to identify itself.
 func Identity(sk crypto.PrivKey) Option {
 	return func(cfg *Config) error {
 		if cfg.PeerKey != nil {
@@ -179,7 +179,7 @@ func Identity(sk crypto.PrivKey) Option {
 	}
 }
 
-// ConnectionManager configures libp2p to use the given connection manager.
+// ConnectionManager configures dms3-p2p to use the given connection manager.
 func ConnectionManager(connman ifconnmgr.ConnManager) Option {
 	return func(cfg *Config) error {
 		if cfg.ConnManager != nil {
@@ -190,7 +190,7 @@ func ConnectionManager(connman ifconnmgr.ConnManager) Option {
 	}
 }
 
-// AddrsFactory configures libp2p to use the given address factory.
+// AddrsFactory configures dms3-p2p to use the given address factory.
 func AddrsFactory(factory config.AddrsFactory) Option {
 	return func(cfg *Config) error {
 		if cfg.AddrsFactory != nil {
@@ -201,7 +201,7 @@ func AddrsFactory(factory config.AddrsFactory) Option {
 	}
 }
 
-// EnableRelay configures libp2p to enable the relay transport.
+// EnableRelay configures dms3-p2p to enable the relay transport.
 func EnableRelay(options ...circuit.RelayOpt) Option {
 	return func(cfg *Config) error {
 		cfg.Relay = true
@@ -210,7 +210,7 @@ func EnableRelay(options ...circuit.RelayOpt) Option {
 	}
 }
 
-// FilterAddresses configures libp2p to never dial nor accept connections from
+// FilterAddresses configures dms3-p2p to never dial nor accept connections from
 // the given addresses.
 func FilterAddresses(addrs ...*net.IPNet) Option {
 	return func(cfg *Config) error {
@@ -224,14 +224,14 @@ func FilterAddresses(addrs ...*net.IPNet) Option {
 	}
 }
 
-// NATPortMap configures libp2p to use the default NATManager. The default
+// NATPortMap configures dms3-p2p to use the default NATManager. The default
 // NATManager will attempt to open a port in your network's firewall using UPnP.
 func NATPortMap() Option {
 	return NATManager(bhost.NewNATManager)
 }
 
-// NATManager will configure libp2p to use the requested NATManager. This
-// function should be passed a NATManager *constructor* that takes a libp2p Network.
+// NATManager will configure dms3-p2p to use the requested NATManager. This
+// function should be passed a NATManager *constructor* that takes a dms3-p2p Network.
 func NATManager(nm config.NATManagerC) Option {
 	return func(cfg *Config) error {
 		if cfg.NATManager != nil {
@@ -242,19 +242,19 @@ func NATManager(nm config.NATManagerC) Option {
 	}
 }
 
-// NoListenAddrs will configure libp2p to not listen by default.
+// NoListenAddrs will configure dms3-p2p to not listen by default.
 //
-// This will both clear any configured listen addrs and prevent libp2p from
+// This will both clear any configured listen addrs and prevent dms3-p2p from
 // applying the default listen address option.
 var NoListenAddrs = func(cfg *Config) error {
 	cfg.ListenAddrs = []ma.Multiaddr{}
 	return nil
 }
 
-// NoTransports will configure libp2p to not enable any transports.
+// NoTransports will configure dms3-p2p to not enable any transports.
 //
-// This will both clear any configured transports (specified in prior libp2p
-// options) and prevent libp2p from applying the default transports.
+// This will both clear any configured transports (specified in prior dms3-p2p
+// options) and prevent dms3-p2p from applying the default transports.
 var NoTransports = func(cfg *Config) error {
 	cfg.Transports = []config.TptC{}
 	return nil

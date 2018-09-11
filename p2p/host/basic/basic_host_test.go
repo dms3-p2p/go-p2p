@@ -8,15 +8,15 @@ import (
 	"testing"
 	"time"
 
-	testutil "github.com/libp2p/go-testutil"
+	testutil "github.com/dms3-p2p/go-testutil"
 
-	host "github.com/libp2p/go-libp2p-host"
-	inet "github.com/libp2p/go-libp2p-net"
-	pstore "github.com/libp2p/go-libp2p-peerstore"
-	protocol "github.com/libp2p/go-libp2p-protocol"
-	swarmt "github.com/libp2p/go-libp2p-swarm/testing"
-	ma "github.com/multiformats/go-multiaddr"
-	madns "github.com/multiformats/go-multiaddr-dns"
+	host "github.com/dms3-p2p/go-p2p-host"
+	inet "github.com/dms3-p2p/go-p2p-net"
+	pstore "github.com/dms3-p2p/go-p2p-peerstore"
+	protocol "github.com/dms3-p2p/go-p2p-protocol"
+	swarmt "github.com/dms3-p2p/go-p2p-swarm/testing"
+	ma "github.com/dms3-mft/go-multiaddr"
+	madns "github.com/dms3-mft/go-multiaddr-dns"
 )
 
 func TestHostSimple(t *testing.T) {
@@ -349,9 +349,9 @@ func TestAddrResolution(t *testing.T) {
 	}
 	addr1 := ma.StringCast("/dnsaddr/example.com")
 	addr2 := ma.StringCast("/ip4/192.0.2.1/tcp/123")
-	p2paddr1 := ma.StringCast("/dnsaddr/example.com/ipfs/" + p1.Pretty())
-	p2paddr2 := ma.StringCast("/ip4/192.0.2.1/tcp/123/ipfs/" + p1.Pretty())
-	p2paddr3 := ma.StringCast("/ip4/192.0.2.1/tcp/123/ipfs/" + p2.Pretty())
+	p2paddr1 := ma.StringCast("/dnsaddr/example.com/dms3fs/" + p1.Pretty())
+	p2paddr2 := ma.StringCast("/ip4/192.0.2.1/tcp/123/dms3fs/" + p1.Pretty())
+	p2paddr3 := ma.StringCast("/ip4/192.0.2.1/tcp/123/dms3fs/" + p2.Pretty())
 
 	backend := &madns.MockBackend{
 		TXT: map[string][]string{"_dnsaddr.example.com": []string{

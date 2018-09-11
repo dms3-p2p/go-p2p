@@ -5,15 +5,15 @@ import (
 	"testing"
 	"time"
 
-	ic "github.com/libp2p/go-libp2p-crypto"
-	peer "github.com/libp2p/go-libp2p-peer"
-	pstore "github.com/libp2p/go-libp2p-peerstore"
-	swarmt "github.com/libp2p/go-libp2p-swarm/testing"
-	identify "github.com/libp2p/go-libp2p/p2p/protocol/identify"
+	ic "github.com/dms3-p2p/go-p2p-crypto"
+	peer "github.com/dms3-p2p/go-p2p-peer"
+	pstore "github.com/dms3-p2p/go-p2p-peerstore"
+	swarmt "github.com/dms3-p2p/go-p2p-swarm/testing"
+	identify "github.com/dms3-p2p/go-p2p/p2p/protocol/identify"
 
-	blhost "github.com/libp2p/go-libp2p-blankhost"
-	host "github.com/libp2p/go-libp2p-host"
-	ma "github.com/multiformats/go-multiaddr"
+	blhost "github.com/dms3-p2p/go-p2p-blankhost"
+	host "github.com/dms3-p2p/go-p2p-host"
+	ma "github.com/dms3-mft/go-multiaddr"
 )
 
 func subtestIDService(t *testing.T) {

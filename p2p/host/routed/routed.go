@@ -5,17 +5,17 @@ import (
 	"fmt"
 	"time"
 
-	host "github.com/libp2p/go-libp2p-host"
+	host "github.com/dms3-p2p/go-p2p-host"
 
-	logging "github.com/ipfs/go-log"
-	ifconnmgr "github.com/libp2p/go-libp2p-interface-connmgr"
-	lgbl "github.com/libp2p/go-libp2p-loggables"
-	inet "github.com/libp2p/go-libp2p-net"
-	peer "github.com/libp2p/go-libp2p-peer"
-	pstore "github.com/libp2p/go-libp2p-peerstore"
-	protocol "github.com/libp2p/go-libp2p-protocol"
-	ma "github.com/multiformats/go-multiaddr"
-	msmux "github.com/multiformats/go-multistream"
+	logging "github.com/dms3-fs/go-log"
+	ifconnmgr "github.com/dms3-p2p/go-p2p-interface-connmgr"
+	lgbl "github.com/dms3-p2p/go-p2p-loggables"
+	inet "github.com/dms3-p2p/go-p2p-net"
+	peer "github.com/dms3-p2p/go-p2p-peer"
+	pstore "github.com/dms3-p2p/go-p2p-peerstore"
+	protocol "github.com/dms3-p2p/go-p2p-protocol"
+	ma "github.com/dms3-mft/go-multiaddr"
+	msmux "github.com/dms3-mft/go-multistream"
 )
 
 var log = logging.Logger("routedhost")
@@ -139,7 +139,7 @@ func (rh *RoutedHost) NewStream(ctx context.Context, p peer.ID, pids ...protocol
 	return rh.host.NewStream(ctx, p, pids...)
 }
 func (rh *RoutedHost) Close() error {
-	// no need to close IpfsRouting. we dont own it.
+	// no need to close Dms3FsRouting. we dont own it.
 	return rh.host.Close()
 }
 func (rh *RoutedHost) ConnManager() ifconnmgr.ConnManager {

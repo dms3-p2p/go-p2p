@@ -5,39 +5,39 @@ import (
 	"strings"
 	"sync"
 
-	pb "github.com/libp2p/go-libp2p/p2p/protocol/identify/pb"
+	pb "github.com/dms3-p2p/go-p2p/p2p/protocol/identify/pb"
 
 	semver "github.com/coreos/go-semver/semver"
 	ggio "github.com/gogo/protobuf/io"
-	logging "github.com/ipfs/go-log"
-	ic "github.com/libp2p/go-libp2p-crypto"
-	host "github.com/libp2p/go-libp2p-host"
-	lgbl "github.com/libp2p/go-libp2p-loggables"
-	inet "github.com/libp2p/go-libp2p-net"
-	peer "github.com/libp2p/go-libp2p-peer"
-	pstore "github.com/libp2p/go-libp2p-peerstore"
-	ma "github.com/multiformats/go-multiaddr"
-	msmux "github.com/multiformats/go-multistream"
+	logging "github.com/dms3-fs/go-log"
+	ic "github.com/dms3-p2p/go-p2p-crypto"
+	host "github.com/dms3-p2p/go-p2p-host"
+	lgbl "github.com/dms3-p2p/go-p2p-loggables"
+	inet "github.com/dms3-p2p/go-p2p-net"
+	peer "github.com/dms3-p2p/go-p2p-peer"
+	pstore "github.com/dms3-p2p/go-p2p-peerstore"
+	ma "github.com/dms3-mft/go-multiaddr"
+	msmux "github.com/dms3-mft/go-multistream"
 )
 
 var log = logging.Logger("net/identify")
 
 // ID is the protocol.ID of the Identify Service.
-const ID = "/ipfs/id/1.0.0"
+const ID = "/dms3fs/id/1.0.0"
 
 // LibP2PVersion holds the current protocol version for a client running this code
 // TODO(jbenet): fix the versioning mess.
-const LibP2PVersion = "ipfs/0.1.0"
+const LibP2PVersion = "dms3fs/0.1.0"
 
-var ClientVersion = "go-libp2p/3.3.4"
+var ClientVersion = "go-dms3-p2p/3.3.4"
 
 // IDService is a structure that implements ProtocolIdentify.
 // It is a trivial service that gives the other peer some
 // useful information about the local peer. A sort of hello.
 //
 // The IDService sends:
-//  * Our IPFS Protocol Version
-//  * Our IPFS Agent Version
+//  * Our DMS3FS Protocol Version
+//  * Our DMS3FS Agent Version
 //  * Our public Listen Addresses
 type IDService struct {
 	Host host.Host
@@ -413,11 +413,13 @@ func addrInAddrs(a ma.Multiaddr, as []ma.Multiaddr) bool {
 // we're in tight development, we will return false for minor version
 // changes too.
 func protocolVersionsAreCompatible(v1, v2 string) bool {
-	if strings.HasPrefix(v1, "ipfs/") {
-		v1 = v1[5:]
+	if strings.HasPrefix(v1, "dms3fs/") {
+//		v1 = v1[5:]	// slice from index 5 for "ipfs/0.1.0"
+		v1 = v1[7:]	// slice from index 7 for "dms3fs/0.1.0"
 	}
-	if strings.HasPrefix(v2, "ipfs/") {
-		v2 = v2[5:]
+	if strings.HasPrefix(v2, "dms3fs/") {
+//		v2 = v2[5:]	// slice from index 5 for "ipfs/0.1.0"
+		v2 = v2[7:]	// slice from index 7 for "dms3fs/0.1.0"
 	}
 
 	v1s, err := semver.NewVersion(v1)
@@ -433,7 +435,7 @@ func protocolVersionsAreCompatible(v1, v2 string) bool {
 	return v1s.Major == v2s.Major && v1s.Minor == v2s.Minor
 }
 
-// netNotifiee defines methods to be used with the IpfsDHT
+// netNotifiee defines methods to be used with the Dms3FsDHT
 type netNotifiee IDService
 
 func (nn *netNotifiee) IDService() *IDService {

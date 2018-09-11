@@ -6,18 +6,18 @@ import (
 	"sort"
 	"sync"
 
-	host "github.com/libp2p/go-libp2p-host"
-	bhost "github.com/libp2p/go-libp2p/p2p/host/basic"
+	host "github.com/dms3-p2p/go-p2p-host"
+	bhost "github.com/dms3-p2p/go-p2p/p2p/host/basic"
 
 	"github.com/jbenet/goprocess"
 	goprocessctx "github.com/jbenet/goprocess/context"
-	ic "github.com/libp2p/go-libp2p-crypto"
-	inet "github.com/libp2p/go-libp2p-net"
-	p2putil "github.com/libp2p/go-libp2p-netutil"
-	peer "github.com/libp2p/go-libp2p-peer"
-	pstore "github.com/libp2p/go-libp2p-peerstore"
-	testutil "github.com/libp2p/go-testutil"
-	ma "github.com/multiformats/go-multiaddr"
+	ic "github.com/dms3-p2p/go-p2p-crypto"
+	inet "github.com/dms3-p2p/go-p2p-net"
+	p2putil "github.com/dms3-p2p/go-p2p-netutil"
+	peer "github.com/dms3-p2p/go-p2p-peer"
+	pstore "github.com/dms3-p2p/go-p2p-peerstore"
+	testutil "github.com/dms3-p2p/go-testutil"
+	ma "github.com/dms3-mft/go-multiaddr"
 )
 
 // mocknet implements mocknet.Mocknet

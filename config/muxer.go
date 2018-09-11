@@ -3,9 +3,10 @@ package config
 import (
 	"fmt"
 
-	host "github.com/libp2p/go-libp2p-host"
-	mux "github.com/libp2p/go-stream-muxer"
-	msmux "github.com/whyrusleeping/go-smux-multistream"
+	host "github.com/dms3-p2p/go-p2p-host"
+	mux "github.com/dms3-p2p/go-stream-muxer"
+//	msmux "github.com/whyrusleeping/go-smux-multistream" // imports from multiformats, use ours
+	msmux "github.com/dms3-why/go-smux-multistream"
 )
 
 // MuxC is a stream multiplex transport constructor

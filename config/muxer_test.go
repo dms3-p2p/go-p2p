@@ -4,12 +4,12 @@ import (
 	"context"
 	"testing"
 
-	host "github.com/libp2p/go-libp2p-host"
-	peer "github.com/libp2p/go-libp2p-peer"
-	swarmt "github.com/libp2p/go-libp2p-swarm/testing"
-	bhost "github.com/libp2p/go-libp2p/p2p/host/basic"
-	mux "github.com/libp2p/go-stream-muxer"
-	yamux "github.com/whyrusleeping/go-smux-yamux"
+	host "github.com/dms3-p2p/go-p2p-host"
+	peer "github.com/dms3-p2p/go-p2p-peer"
+	swarmt "github.com/dms3-p2p/go-p2p-swarm/testing"
+	bhost "github.com/dms3-p2p/go-p2p/p2p/host/basic"
+	mux "github.com/dms3-p2p/go-stream-muxer"
+	yamux "github.com/dms3-why/go-smux-yamux"
 )
 
 func TestMuxerSimple(t *testing.T) {

@@ -4,8 +4,8 @@ import (
 	"sync"
 	"time"
 
-	pstore "github.com/libp2p/go-libp2p-peerstore"
-	ma "github.com/multiformats/go-multiaddr"
+	pstore "github.com/dms3-p2p/go-p2p-peerstore"
+	ma "github.com/dms3-mft/go-multiaddr"
 )
 
 const ActivationThresh = 4
@@ -99,7 +99,7 @@ func (oas *ObservedAddrSet) Add(addr ma.Multiaddr, observer ma.Multiaddr) {
 
 // observerGroup is a function that determines what part of
 // a multiaddr counts as a different observer. for example,
-// two ipfs nodes at the same IP/TCP transport would get
+// two dms3fs nodes at the same IP/TCP transport would get
 // the exact same NAT mapping; they would count as the
 // same observer. This may protect against NATs who assign
 // different ports to addresses at different IP hosts, but

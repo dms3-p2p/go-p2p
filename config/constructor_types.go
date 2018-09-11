@@ -4,17 +4,17 @@ import (
 	"fmt"
 	"reflect"
 
-	security "github.com/libp2p/go-conn-security"
-	crypto "github.com/libp2p/go-libp2p-crypto"
-	host "github.com/libp2p/go-libp2p-host"
-	pnet "github.com/libp2p/go-libp2p-interface-pnet"
-	inet "github.com/libp2p/go-libp2p-net"
-	peer "github.com/libp2p/go-libp2p-peer"
-	pstore "github.com/libp2p/go-libp2p-peerstore"
-	transport "github.com/libp2p/go-libp2p-transport"
-	tptu "github.com/libp2p/go-libp2p-transport-upgrader"
-	filter "github.com/libp2p/go-maddr-filter"
-	mux "github.com/libp2p/go-stream-muxer"
+	security "github.com/dms3-p2p/go-conn-security"
+	crypto "github.com/dms3-p2p/go-p2p-crypto"
+	host "github.com/dms3-p2p/go-p2p-host"
+	pnet "github.com/dms3-p2p/go-p2p-interface-pnet"
+	inet "github.com/dms3-p2p/go-p2p-net"
+	peer "github.com/dms3-p2p/go-p2p-peer"
+	pstore "github.com/dms3-p2p/go-p2p-peerstore"
+	transport "github.com/dms3-p2p/go-p2p-transport"
+	tptu "github.com/dms3-p2p/go-p2p-transport-upgrader"
+	filter "github.com/dms3-p2p/go-maddr-filter"
+	mux "github.com/dms3-p2p/go-stream-muxer"
 )
 
 var (

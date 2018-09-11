@@ -5,19 +5,19 @@ import (
 	"io"
 	"time"
 
-	identify "github.com/libp2p/go-libp2p/p2p/protocol/identify"
+	identify "github.com/dms3-p2p/go-p2p/p2p/protocol/identify"
 
-	logging "github.com/ipfs/go-log"
+	logging "github.com/dms3-fs/go-log"
 	goprocess "github.com/jbenet/goprocess"
 	goprocessctx "github.com/jbenet/goprocess/context"
-	ifconnmgr "github.com/libp2p/go-libp2p-interface-connmgr"
-	inet "github.com/libp2p/go-libp2p-net"
-	peer "github.com/libp2p/go-libp2p-peer"
-	pstore "github.com/libp2p/go-libp2p-peerstore"
-	protocol "github.com/libp2p/go-libp2p-protocol"
-	ma "github.com/multiformats/go-multiaddr"
-	madns "github.com/multiformats/go-multiaddr-dns"
-	msmux "github.com/multiformats/go-multistream"
+	ifconnmgr "github.com/dms3-p2p/go-p2p-interface-connmgr"
+	inet "github.com/dms3-p2p/go-p2p-net"
+	peer "github.com/dms3-p2p/go-p2p-peer"
+	pstore "github.com/dms3-p2p/go-p2p-peerstore"
+	protocol "github.com/dms3-p2p/go-p2p-protocol"
+	ma "github.com/dms3-mft/go-multiaddr"
+	madns "github.com/dms3-mft/go-multiaddr-dns"
+	msmux "github.com/dms3-mft/go-multistream"
 )
 
 var log = logging.Logger("basichost")
@@ -79,7 +79,7 @@ type HostOpts struct {
 	// If below 0, timeouts on streams will be deactivated.
 	NegotiationTimeout time.Duration
 
-	// IdentifyService holds an implementation of the /ipfs/id/ protocol.
+	// IdentifyService holds an implementation of the /dms3fs/id/ protocol.
 	// If omitted, a new *identify.IDService will be used.
 	IdentifyService *identify.IDService
 
@@ -95,7 +95,7 @@ type HostOpts struct {
 	// If omitted, this will simply be disabled.
 	NATManager func(inet.Network) NATManager
 
-	// ConnManager is a libp2p connection manager
+	// ConnManager is a dms3-p2p connection manager
 	ConnManager ifconnmgr.ConnManager
 }
 
@@ -398,7 +398,7 @@ func (h *BasicHost) Connect(ctx context.Context, pi pstore.PeerInfo) error {
 }
 
 func (h *BasicHost) resolveAddrs(ctx context.Context, pi pstore.PeerInfo) ([]ma.Multiaddr, error) {
-	proto := ma.ProtocolWithCode(ma.P_IPFS).Name
+	proto := ma.ProtocolWithCode(ma.P_P2P).Name
 	p2paddr, err := ma.NewMultiaddr("/" + proto + "/" + pi.ID.Pretty())
 	if err != nil {
 		return nil, err

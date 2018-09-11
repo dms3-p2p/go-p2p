@@ -8,14 +8,14 @@ import (
 	"testing"
 	"time"
 
-	bhost "github.com/libp2p/go-libp2p/p2p/host/basic"
+	bhost "github.com/dms3-p2p/go-p2p/p2p/host/basic"
 
-	u "github.com/ipfs/go-ipfs-util"
-	logging "github.com/ipfs/go-log"
-	host "github.com/libp2p/go-libp2p-host"
-	inet "github.com/libp2p/go-libp2p-net"
-	protocol "github.com/libp2p/go-libp2p-protocol"
-	swarmt "github.com/libp2p/go-libp2p-swarm/testing"
+	u "github.com/dms3-fs/go-fs-util"
+	logging "github.com/dms3-fs/go-log"
+	host "github.com/dms3-p2p/go-p2p-host"
+	inet "github.com/dms3-p2p/go-p2p-net"
+	protocol "github.com/dms3-p2p/go-p2p-protocol"
+	swarmt "github.com/dms3-p2p/go-p2p-swarm/testing"
 )
 
 var log = logging.Logger("reconnect")

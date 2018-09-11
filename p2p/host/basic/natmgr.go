@@ -5,10 +5,10 @@ import (
 	"sync"
 
 	goprocess "github.com/jbenet/goprocess"
-	lgbl "github.com/libp2p/go-libp2p-loggables"
-	inat "github.com/libp2p/go-libp2p-nat"
-	inet "github.com/libp2p/go-libp2p-net"
-	ma "github.com/multiformats/go-multiaddr"
+	lgbl "github.com/dms3-p2p/go-p2p-loggables"
+	inat "github.com/dms3-p2p/go-p2p-nat"
+	inet "github.com/dms3-p2p/go-p2p-net"
+	ma "github.com/dms3-mft/go-multiaddr"
 )
 
 // A simple interface to manage NAT devices.
